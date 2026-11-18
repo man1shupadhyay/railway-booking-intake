@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Railway Booking Request</title>
+  <meta name="description" content="Submit your railway travel requirements and our booking team will assist you.">
+  <meta name="theme-color" content="#0b2545">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true">
+    <span class="orb orb--green"></span>
+    <span class="orb orb--blue"></span>
+    <span class="orb orb--teal"></span>
+    <span class="backdrop__grid"></span>
+  </div>
+
+  <a class="skip-link" href="#booking-form">Skip to the form</a>
+
+  <header class="hero">
+    <div class="hero__rail" aria-hidden="true"></div>
+    <div class="signal" style="left:18%" aria-hidden="true"><span class="signal__head"><i class="lamp lamp--red"></i><i class="lamp lamp--yellow"></i><i class="lamp lamp--green"></i></span><span class="signal__post"></span></div>
+    <div class="signal" style="left:50%" aria-hidden="true"><span class="signal__head"><i class="lamp lamp--red"></i><i class="lamp lamp--yellow"></i><i class="lamp lamp--green"></i></span><span class="signal__post"></span></div>
+    <div class="signal" style="left:82%" aria-hidden="true"><span class="signal__head"><i class="lamp lamp--red"></i><i class="lamp lamp--yellow"></i><i class="lamp lamp--green"></i></span><span class="signal__post"></span></div>
+    <div class="hero__train hero__train--modern" aria-hidden="true">
+      <svg viewBox="0 0 400 44" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="mBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0f2"/>
+          </linearGradient>
+          <linearGradient id="mGlow" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#ffe9a3" stop-opacity="0"/><stop offset="1" stop-color="#ffe9a3" stop-opacity=".9"/>
+          </linearGradient>
+        </defs>
+        <g>
+          <rect x="4" y="9" width="92" height="24" rx="5" fill="url(#mBody)"/>
+          <rect x="102" y="9" width="92" height="24" rx="5" fill="url(#mBody)"/>
+          <rect x="200" y="9" width="92" height="24" rx="5" fill="url(#mBody)"/>
+          <path d="M298 9h52c22 0 38 10 46 21v3H298z" fill="url(#mBody)"/>
+        </g>
+        <g fill="#1a8a58">
+          <rect x="4" y="25" width="92" height="3"/><rect x="102" y="25" width="92" height="3"/>
+          <rect x="200" y="25" width="92" height="3"/><path d="M298 25h96l2 3h-98z"/>
+        </g>
+        <g fill="#13315c">
+          <rect x="12" y="14" width="14" height="7" rx="2"/><rect x="31" y="14" width="14" height="7" rx="2"/><rect x="50" y="14" width="14" height="7" rx="2"/><rect x="69" y="14" width="14" height="7" rx="2"/>
+          <rect x="110" y="14" width="14" height="7" rx="2"/><rect x="129" y="14" width="14" height="7" rx="2"/><rect x="148" y="14" width="14" height="7" rx="2"/><rect x="167" y="14" width="14" height="7" rx="2"/>
+          <rect x="208" y="14" width="14" height="7" rx="2"/><rect x="227" y="14" width="14" height="7" rx="2"/><rect x="246" y="14" width="14" height="7" rx="2"/><rect x="265" y="14" width="14" height="7" rx="2"/>
+          <rect x="306" y="14" width="14" height="7" rx="2"/><rect x="325" y="14" width="14" height="7" rx="2"/>
+          <path d="M350 13h6c10 0 20 5 26 11h-32z"/>
+        </g>
+        <g fill="#8fa4bf"><rect x="96" y="22" width="6" height="4"/><rect x="194" y="22" width="6" height="4"/><rect x="292" y="22" width="6" height="4"/></g>
+        <circle cx="393" cy="29" r="2.2" fill="#ffe9a3"/>
+        <g fill="#0b2545" stroke="#8fa4bf" stroke-width="1.5">
+          <circle cx="20" cy="37" r="4"/><circle cx="80" cy="37" r="4"/>
+          <circle cx="118" cy="37" r="4"/><circle cx="178" cy="37" r="4"/>
+          <circle cx="216" cy="37" r="4"/><circle cx="276" cy="37" r="4"/>
+          <circle cx="316" cy="37" r="4"/><circle cx="372" cy="37" r="4"/>
+        </g>
+      </svg>
+      <span class="hero__beam"></span>
+    </div>
+    <div class="hero__train hero__train--steam" aria-hidden="true">
+      <svg viewBox="0 0 410 46" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="tBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfe0f2"/>
+          </linearGradient>
+          <linearGradient id="iron" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3a4a5e"/><stop offset=".45" stop-color="#1e2a38"/><stop offset="1" stop-color="#121a24"/>
+          </linearGradient>
+        </defs>
+
+        <g>
+          <rect x="4" y="11" width="88" height="24" rx="5" fill="url(#tBody)"/>
+          <rect x="98" y="11" width="88" height="24" rx="5" fill="url(#tBody)"/>
+          <rect x="192" y="11" width="88" height="24" rx="5" fill="url(#tBody)"/>
+        </g>
+        <g fill="#1a8a58"><rect x="4" y="27" width="88" height="3"/><rect x="98" y="27" width="88" height="3"/><rect x="192" y="27" width="88" height="3"/></g>
+        <g fill="#13315c">
+          <rect x="11" y="16" width="13" height="7" rx="2"/><rect x="29" y="16" width="13" height="7" rx="2"/><rect x="47" y="16" width="13" height="7" rx="2"/><rect x="65" y="16" width="13" height="7" rx="2"/>
+          <rect x="105" y="16" width="13" height="7" rx="2"/><rect x="123" y="16" width="13" height="7" rx="2"/><rect x="141" y="16" width="13" height="7" rx="2"/><rect x="159" y="16" width="13" height="7" rx="2"/>
+          <rect x="199" y="16" width="13" height="7" rx="2"/><rect x="217" y="16" width="13" height="7" rx="2"/><rect x="235" y="16" width="13" height="7" rx="2"/><rect x="253" y="16" width="13" height="7" rx="2"/>
+        </g>
+        <g fill="#8fa4bf"><rect x="92" y="24" width="6" height="4"/><rect x="186" y="24" width="6" height="4"/><rect x="280" y="24" width="8" height="4"/></g>
+
+        <g class="loco">
+          <rect x="288" y="17" width="26" height="18" rx="2" fill="url(#iron)"/>
+          <rect x="290" y="14" width="22" height="4" rx="1" fill="#0d1520"/>
+          <rect x="288" y="24" width="26" height="2" fill="#c9a64b"/>
+          <rect x="316" y="9" width="24" height="26" rx="1.5" fill="url(#iron)"/>
+          <path d="M313 9h30l-2 -3h-26z" fill="#0d1520"/>
+          <rect x="320" y="13" width="8" height="8" rx="1" fill="#ffd98a" opacity=".85"/>
+          <rect x="330" y="13" width="7" height="8" rx="1" fill="#ffd98a" opacity=".6"/>
+          <rect x="340" y="17" width="52" height="15" rx="7" fill="url(#iron)"/>
+          <g fill="#c9a64b"><rect x="350" y="17" width="2" height="15"/><rect x="366" y="17" width="2" height="15"/><rect x="380" y="17" width="2" height="15"/></g>
+          <path d="M354 17a6 5 0 0 1 12 0z" fill="#c9a64b"/>
+          <path d="M368 17a4 3.5 0 0 1 8 0z" fill="#2a3848"/>
+          <rect x="380" y="6" width="6" height="12" fill="#121a24"/>
+          <path d="M377 6h12l-1.5 -3h-9z" fill="#0d1520"/>
+          <rect x="390" y="16" width="6" height="17" rx="2" fill="#0d1520"/>
+          <circle cx="396" cy="15" r="2.6" fill="#ffe9a3"/>
+          <rect x="393.5" y="16.5" width="4" height="2" fill="#0d1520"/>
+          <rect x="314" y="32" width="84" height="3" fill="#0d1520"/>
+          <rect x="396" y="29" width="5" height="6" fill="#b3261e"/>
+          <path d="M396 35h8l4 8h-14z" fill="#3a4a5e"/>
+          <g class="wheel" style="transform-origin:296px 40px"><circle cx="296" cy="40" r="4" fill="#0d1520" stroke="#c9a64b" stroke-width="1.4"/><g stroke="#c9a64b" stroke-width=".9"><line x1="296" y1="37" x2="296" y2="43" transform="rotate(0 296 40)"/><line x1="296" y1="37" x2="296" y2="43" transform="rotate(45 296 40)"/><line x1="296" y1="37" x2="296" y2="43" transform="rotate(90 296 40)"/><line x1="296" y1="37" x2="296" y2="43" transform="rotate(135 296 40)"/></g><circle cx="296" cy="40" r="1.4" fill="#c9a64b"/></g><g class="wheel" style="transform-origin:308px 40px"><circle cx="308" cy="40" r="4" fill="#0d1520" stroke="#c9a64b" stroke-width="1.4"/><g stroke="#c9a64b" stroke-width=".9"><line x1="308" y1="37" x2="308" y2="43" transform="rotate(0 308 40)"/><line x1="308" y1="37" x2="308" y2="43" transform="rotate(45 308 40)"/><line x1="308" y1="37" x2="308" y2="43" transform="rotate(90 308 40)"/><line x1="308" y1="37" x2="308" y2="43" transform="rotate(135 308 40)"/></g><circle cx="308" cy="40" r="1.4" fill="#c9a64b"/></g>
+          <g class="wheel wheel--big" style="transform-origin:330px 38px"><circle cx="330" cy="38" r="6.5" fill="#0d1520" stroke="#c9a64b" stroke-width="1.4"/><g stroke="#c9a64b" stroke-width=".9"><line x1="330" y1="32.5" x2="330" y2="43.5" transform="rotate(0 330 38)"/><line x1="330" y1="32.5" x2="330" y2="43.5" transform="rotate(45 330 38)"/><line x1="330" y1="32.5" x2="330" y2="43.5" transform="rotate(90 330 38)"/><line x1="330" y1="32.5" x2="330" y2="43.5" transform="rotate(135 330 38)"/></g><circle cx="330" cy="38" r="1.4" fill="#c9a64b"/></g><g class="wheel wheel--big" style="transform-origin:348px 38px"><circle cx="348" cy="38" r="6.5" fill="#0d1520" stroke="#c9a64b" stroke-width="1.4"/><g stroke="#c9a64b" stroke-width=".9"><line x1="348" y1="32.5" x2="348" y2="43.5" transform="rotate(0 348 38)"/><line x1="348" y1="32.5" x2="348" y2="43.5" transform="rotate(45 348 38)"/><line x1="348" y1="32.5" x2="348" y2="43.5" transform="rotate(90 348 38)"/><line x1="348" y1="32.5" x2="348" y2="43.5" transform="rotate(135 348 38)"/></g><circle cx="348" cy="38" r="1.4" fill="#c9a64b"/></g><g class="wheel wheel--big" style="transform-origin:366px 38px"><circle cx="366" cy="38" r="6.5" fill="#0d1520" stroke="#c9a64b" stroke-width="1.4"/><g stroke="#c9a64b" stroke-width=".9"><line x1="366" y1="32.5" x2="366" y2="43.5" transform="rotate(0 366 38)"/><line x1="366" y1="32.5" x2="366" y2="43.5" transform="rotate(45 366 38)"/><line x1="366" y1="32.5" x2="366" y2="43.5" transform="rotate(90 366 38)"/><line x1="366" y1="32.5" x2="366" y2="43.5" transform="rotate(135 366 38)"/></g><circle cx="366" cy="38" r="1.4" fill="#c9a64b"/></g>
+          <g class="wheel" style="transform-origin:385px 40px"><circle cx="385" cy="40" r="4" fill="#0d1520" stroke="#c9a64b" stroke-width="1.4"/><g stroke="#c9a64b" stroke-width=".9"><line x1="385" y1="37" x2="385" y2="43" transform="rotate(0 385 40)"/><line x1="385" y1="37" x2="385" y2="43" transform="rotate(45 385 40)"/><line x1="385" y1="37" x2="385" y2="43" transform="rotate(90 385 40)"/><line x1="385" y1="37" x2="385" y2="43" transform="rotate(135 385 40)"/></g><circle cx="385" cy="40" r="1.4" fill="#c9a64b"/></g>
+          <rect class="rod" x="328" y="37" width="40" height="2.2" rx="1" fill="#c9a64b"/>
+        </g>
+
+        <g fill="#0b2545" stroke="#8fa4bf" stroke-width="1.5">
+          <circle cx="20" cy="39" r="4"/><circle cx="76" cy="39" r="4"/>
+          <circle cx="114" cy="39" r="4"/><circle cx="170" cy="39" r="4"/>
+          <circle cx="208" cy="39" r="4"/><circle cx="264" cy="39" r="4"/>
+        </g>
+      </svg>
+      <span class="hero__beam"></span>
+      <span class="smoke" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    </div>
+    <div class="container hero__inner">
+      <div class="brand">
+        <span class="brand__mark"><i data-lucide="train-front"></i></span>
+        <span class="brand__name">Booking Desk</span>
+      </div>
+      <h1 class="hero__title">Railway Booking Request</h1>
+      <p class="hero__subtitle">Submit your travel requirements and our booking team will assist you.</p>
+      <aside class="booking-panel" id="bookingPanel" aria-label="IRCTC booking times">
+        <div class="bp-clock">
+          <span class="bp-live"><i></i> Live IST</span>
+          <span class="bp-date" id="istDate"></span>
+          <span class="bp-time" id="istTime">--:--:--</span>
+        </div>
+        <div class="bp-group">
+          <p class="bp-title">Normal booking</p>
+          <dl class="bp-list">
+            <dt>Booking time</dt><dd>8:00 AM</dd>
+            <dt>Advance period</dt><dd>60 days</dd>
+            <dt>Open up to</dt><dd><strong id="generalUpTo">—</strong></dd>
+            <dt>Next opens</dt><dd><strong id="generalNext">—</strong></dd>
+            <dt>Opens in</dt><dd><span class="bp-count" id="generalCountdown">--:--:--</span></dd>
+          </dl>
+        </div>
+        <div class="bp-group">
+          <p class="bp-title">Tatkal booking <span>1 day before journey</span></p>
+          <dl class="bp-list">
+            <dt>AC classes</dt><dd>10:00 AM <span class="bp-state" id="tatkalAc"></span></dd>
+            <dt>Non-AC (SL, 2S)</dt><dd>11:00 AM <span class="bp-state" id="tatkalNonAc"></span></dd>
+            <dt>Today's Tatkal for</dt><dd><strong id="tatkalFor">—</strong></dd>
+          </dl>
+        </div>
+      </aside>
+      <ul class="hero__facts">
+        <li><i data-lucide="shield-check"></i> No passwords, OTPs or payment details</li>
+      </ul>
+    </div>
+  </header>
+
+  <nav class="stepper" aria-label="Form sections">
+    <div class="container">
+      <ol class="stepper__list">
+        <li><a href="#section-customer" class="stepper__step" data-step="customer"><span class="stepper__dot">1</span><span class="stepper__label">Customer</span></a></li>
+        <li><a href="#section-journey" class="stepper__step" data-step="journey"><span class="stepper__dot">2</span><span class="stepper__label">Journey</span></a></li>
+        <li><a href="#section-passengers" class="stepper__step" data-step="passengers"><span class="stepper__dot">3</span><span class="stepper__label">Passengers</span></a></li>
+        <li><a href="#section-preferences" class="stepper__step" data-step="preferences"><span class="stepper__dot">4</span><span class="stepper__label">Preferences</span></a></li>
+        <li><a href="#section-declaration" class="stepper__step" data-step="declaration"><span class="stepper__dot">5</span><span class="stepper__label">Declaration</span></a></li>
+      </ol>
+      <div class="stepper__bar" role="progressbar" aria-label="Form completion" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <span class="stepper__fill"></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container main">
+    <div class="section-tools" id="sectionTools">
+      <p>Tap a section to open or close it.</p>
+      <div>
+        <button type="button" class="chip-btn" id="expandAll"><i data-lucide="chevrons-down-up"></i> Expand all</button>
+        <button type="button" class="chip-btn" id="collapseAll"><i data-lucide="chevrons-up-down"></i> Collapse all</button>
+      </div>
+    </div>
+    <form id="booking-form" class="form" novalidate>
+      <div class="hp" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+      <section class="card" id="section-customer" data-section="customer" aria-labelledby="h-customer">
+        <header class="card__head">
+          <span class="card__icon"><i data-lucide="user-round"></i></span>
+          <div>
+            <p class="card__eyebrow">Section A</p>
+            <h2 id="h-customer">Customer information</h2>
+          </div>
+        </header>
+        <div class="grid">
+          <div class="field--wide grid grid--names">
+          <div class="field">
+            <label for="firstName">First name <span class="req" aria-hidden="true">*</span></label>
+            <input id="firstName" name="firstName" type="text" maxlength="30" autocomplete="given-name" required>
+            <p class="field__error" id="firstName-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="middleName">Middle name <span class="opt">optional</span></label>
+            <input id="middleName" name="middleName" type="text" maxlength="30" autocomplete="additional-name" >
+            <p class="field__error" id="middleName-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="lastName">Last name <span class="opt">optional</span></label>
+            <input id="lastName" name="lastName" type="text" maxlength="30" autocomplete="family-name" >
+            <p class="field__error" id="lastName-error" aria-live="polite"></p>
+          </div>
+            <p class="field__hint field--wide">As on your ID, in English letters — the same way IRCTC asks for names.</p>
+          </div>
+          <div class="field">
+            <label for="mobile">Mobile number <span class="req" aria-hidden="true">*</span></label>
+            <div class="input-prefix"><span>+91</span><input id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="16" placeholder="98765 43210" required></div>
+            <p class="field__hint">10-digit Indian mobile number</p>
+            <p class="field__error" id="mobile-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="whatsapp">WhatsApp number <span class="req" aria-hidden="true">*</span></label>
+            <div class="input-prefix"><span>+91</span><input id="whatsapp" name="whatsapp" type="tel" inputmode="numeric" maxlength="16" placeholder="Can be the same as mobile" required></div>
+            <p class="field__error" id="whatsapp-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="email">Email address <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="name@example.com" required>
+            <p class="field__error" id="email-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="city-input">City <span class="req" aria-hidden="true">*</span></label>
+            <input id="city-input" type="text" maxlength="60" placeholder="Search or type your city">
+            <input id="city" name="city" type="hidden">
+            <p class="field__error" id="city-error" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="section-journey" data-section="journey" aria-labelledby="h-journey">
+        <header class="card__head">
+          <span class="card__icon"><i data-lucide="route"></i></span>
+          <div>
+            <p class="card__eyebrow">Section B</p>
+            <h2 id="h-journey">Journey details</h2>
+          </div>
+        </header>
+        <div class="grid">
+          <div class="field">
+            <label for="origin-input">From — station name or code <span class="req" aria-hidden="true">*</span></label>
+            <input id="origin-input" type="text" maxlength="60" placeholder="Search name or code, e.g. LTT">
+            <input id="origin" name="origin" type="hidden">
+            <p class="field__error" id="origin-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="destination-input">To — station name or code <span class="req" aria-hidden="true">*</span></label>
+            <input id="destination-input" type="text" maxlength="60" placeholder="Search name or code, e.g. CPR">
+            <input id="destination" name="destination" type="hidden">
+            <p class="field__error" id="destination-error" aria-live="polite"></p>
+          </div>
+
+          <fieldset class="field field--wide choice-group">
+            <legend>Journey type <span class="req" aria-hidden="true">*</span></legend>
+            <div class="segmented">
+              <label><input type="radio" name="journeyType" value="One Way" checked><span>One way</span></label>
+              <label><input type="radio" name="journeyType" value="Round Trip"><span>Round trip</span></label>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="journeyDate">Journey date <span class="req" aria-hidden="true">*</span></label>
+            <input id="journeyDate" name="journeyDate" type="date" required>
+            <p class="field__error" id="journeyDate-error" aria-live="polite"></p>
+            <p class="journey-window" id="journeyWindow" hidden></p>
+          </div>
+          <div class="field" id="returnDateField" hidden>
+            <label for="returnDate">Return date <span class="req" aria-hidden="true">*</span></label>
+            <input id="returnDate" name="returnDate" type="date">
+            <p class="field__error" id="returnDate-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="preferredTrain">Preferred train name / number <span class="req" aria-hidden="true">*</span></label>
+            <input id="preferredTrain" name="preferredTrain" type="text" maxlength="60" placeholder="e.g. 11061 or Pawan Express" required>
+            <p class="field__hint">Write <strong>Any</strong> if you have no preference.</p>
+            <p class="field__error" id="preferredTrain-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="preferredDeparture">Preferred departure time <span class="req" aria-hidden="true">*</span></label>
+            <select id="preferredDeparture" name="preferredDeparture" required data-searchable>
+              <option value="">Choose a time</option>
+              <option value="Any Time">Any time</option>
+              <option value="Morning">Morning (6 am – 12 pm)</option>
+              <option value="Afternoon">Afternoon (12 pm – 5 pm)</option>
+              <option value="Evening">Evening (5 pm – 9 pm)</option>
+              <option value="Night">Night (9 pm – 6 am)</option>
+            </select>
+            <p class="field__error" id="preferredDeparture-error" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="section-passengers" data-section="passengers" aria-labelledby="h-passengers">
+        <header class="card__head">
+          <span class="card__icon"><i data-lucide="users"></i></span>
+          <div>
+            <p class="card__eyebrow">Section C</p>
+            <h2 id="h-passengers">Passenger details</h2>
+          </div>
+          <span class="badge" id="passengerCount" aria-live="polite">1 of 6</span>
+        </header>
+        <p class="card__note"><i data-lucide="info"></i> Enter each name as on the ID the passenger will carry. Like IRCTC, the name on the ticket (first + middle + last) must be 3–16 English letters. Do not enter Aadhaar or other ID numbers.</p>
+        <div id="passengerList" class="passengers"></div>
+        <button type="button" class="btn btn--ghost" id="addPassenger"><i data-lucide="user-plus"></i> Add passenger</button>
+      </section>
+
+      <section class="card" id="section-preferences" data-section="preferences" aria-labelledby="h-preferences">
+        <header class="card__head">
+          <span class="card__icon"><i data-lucide="sliders-horizontal"></i></span>
+          <div>
+            <p class="card__eyebrow">Section D</p>
+            <h2 id="h-preferences">Booking preferences</h2>
+          </div>
+        </header>
+        <div class="grid">
+          <div class="field">
+            <label for="travelClass">Travel class <span class="req" aria-hidden="true">*</span></label>
+            <select id="travelClass" name="travelClass" required data-searchable>
+              <option value="">Choose a class</option>
+              <option value="1A">1A – First AC</option>
+              <option value="2A">2A – Second AC</option>
+              <option value="3A">3A – Third AC</option>
+              <option value="3E">3E – AC Economy</option>
+              <option value="SL">SL – Sleeper</option>
+              <option value="CC">CC – Chair Car</option>
+              <option value="2S">2S – Second Sitting</option>
+            </select>
+            <p class="field__error" id="travelClass-error" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="quota">Quota <span class="req" aria-hidden="true">*</span></label>
+            <select id="quota" name="quota" required data-searchable>
+              <option value="">Choose a quota</option>
+              <option value="General">General</option>
+              <option value="Tatkal">Tatkal</option>
+              <option value="Premium Tatkal">Premium Tatkal</option>
+              <option value="Ladies">Ladies</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="field__hint" id="quotaHint">Quotas other than General are subject to eligibility and availability.</p>
+            <p class="field__error" id="quota-error" aria-live="polite"></p>
+          </div>
+          <div class="field field--wide" id="quotaOtherField" hidden>
+            <label for="quotaOther">Which quota? <span class="req" aria-hidden="true">*</span></label>
+            <input id="quotaOther" name="quotaOther" type="text" maxlength="60" placeholder="e.g. Senior Citizen, Divyangjan">
+            <p class="field__error" id="quotaOther-error" aria-live="polite"></p>
+          </div>
+
+          <fieldset class="field choice-group" id="alternativeTrain">
+            <legend>Alternative train acceptable? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="segmented">
+              <label><input type="radio" name="alternativeTrain" value="Yes" required><span>Yes</span></label>
+              <label><input type="radio" name="alternativeTrain" value="No"><span>No</span></label>
+            </div>
+            <p class="field__error" id="alternativeTrain-error" aria-live="polite"></p>
+          </fieldset>
+          <fieldset class="field choice-group" id="alternativeDate">
+            <legend>Alternative date acceptable? <span class="req" aria-hidden="true">*</span></legend>
+            <div class="segmented">
+              <label><input type="radio" name="alternativeDate" value="Yes" required><span>Yes</span></label>
+              <label><input type="radio" name="alternativeDate" value="No"><span>No</span></label>
+            </div>
+            <p class="field__error" id="alternativeDate-error" aria-live="polite"></p>
+          </fieldset>
+          <p class="field field--wide field__hint">Preferred departure time is set under Journey details.</p>
+
+          <div class="field field--wide">
+            <label for="specialInstructions">Special instructions <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="specialInstructions" name="specialInstructions" rows="4" maxlength="1000" placeholder="e.g. Senior citizen travelling, wheelchair help needed at boarding station" required></textarea>
+            <p class="field__hint">Write <strong>None</strong> if there is nothing to add. <span id="instructionsCount">0</span>/1000 characters</p>
+            <p class="field__error" id="specialInstructions-error" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" id="section-declaration" data-section="declaration" aria-labelledby="h-declaration">
+        <header class="card__head">
+          <span class="card__icon"><i data-lucide="file-check-2"></i></span>
+          <div>
+            <p class="card__eyebrow">Section E</p>
+            <h2 id="h-declaration">Declaration</h2>
+          </div>
+        </header>
+        <div class="checks">
+          <label class="check"><input type="checkbox" name="declAccurate" id="declAccurate" required><span>I confirm that the information provided is accurate.</span></label>
+          <label class="check"><input type="checkbox" name="declNoGuarantee" id="declNoGuarantee" required><span>I understand that this is a booking request and does not guarantee a confirmed railway ticket.</span></label>
+          <label class="check"><input type="checkbox" name="declConsent" id="declConsent" required><span>I consent to the use of my information for processing and communicating about this booking request.</span></label>
+          <p class="field__error" id="declarations-error" aria-live="polite"></p>
+        </div>
+
+        <details class="privacy" id="privacy">
+          <summary><i data-lucide="lock"></i> Privacy notice</summary>
+          <div class="privacy__body">
+            <p><strong>What we collect.</strong> Your name, contact numbers, email and city; journey details; and the name, age, gender and berth preference of each passenger. We do not ask for Aadhaar numbers, IRCTC passwords, OTPs or payment details — please never share these in this form.</p>
+            <p><strong>How it is used.</strong> Only to look for suitable trains, process this booking request and contact you about it.</p>
+            <p><strong>Where it goes.</strong> When you submit, your request is sent over an encrypted connection to the booking desk's private storage. Only booking desk staff can see it — it is never published on this website or its code repository. A CSV copy is also downloaded to your device for your records.</p>
+            <p><strong>Retention.</strong> <span data-retention></span></p>
+            <p><strong>Contact.</strong> <span data-contact></span></p>
+          </div>
+        </details>
+      </section>
+
+      <div class="actions">
+        <button type="button" class="btn btn--quiet" id="resetForm"><i data-lucide="rotate-ccw"></i> Reset form</button>
+        <button type="submit" class="btn btn--primary" id="submitBtn">
+          <span class="btn__spinner" aria-hidden="true"></span>
+          <span class="btn__label"><i data-lucide="send"></i> Submit request</span>
+        </button>
+      </div>
+      <p class="actions__note">All fields are required. Submitting sends your request to the booking desk and downloads a CSV copy for you.</p>
+    </form>
+
+    <section id="successView" class="success" hidden tabindex="-1" aria-labelledby="h-success">
+      <div class="card success__card">
+        <div class="success__badge"><i data-lucide="badge-check"></i></div>
+        <h2 id="h-success">Request ready</h2>
+        <p class="success__lead">Your booking reference number</p>
+        <p class="success__id" id="successId">—</p>
+        <p class="success__time" id="successTime"></p>
+
+        <div class="notice">
+          <i data-lucide="triangle-alert"></i>
+          <p id="successNotice"></p>
+        </div>
+
+        <div class="summary" id="summary"></div>
+
+        <div class="downloads no-print">
+          <button type="button" class="btn btn--primary" data-download="combined"><i data-lucide="download"></i> Booking summary CSV</button>
+          <button type="button" class="btn btn--ghost" data-download="requests"><i data-lucide="file-spreadsheet"></i> BookingRequests.csv</button>
+          <button type="button" class="btn btn--ghost" data-download="passengers"><i data-lucide="file-spreadsheet"></i> Passengers.csv</button>
+          <button type="button" class="btn btn--ghost" id="printSummary"><i data-lucide="printer"></i> Print summary</button>
+        </div>
+        <button type="button" class="btn btn--quiet no-print" id="newRequest"><i data-lucide="plus"></i> Start a new request</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer no-print">
+    <div class="container">
+      <p>Booking requests are handled by a booking desk, not by Indian Railways or IRCTC. Availability and fares are confirmed only at the time of booking.</p>
+    </div>
+  </footer>
+
+  <div class="toasts" id="toasts" aria-live="assertive" aria-atomic="false"></div>
+
+  <dialog class="dialog" id="resetDialog" aria-labelledby="h-reset">
+    <h2 id="h-reset">Clear the form?</h2>
+    <p>Everything you've entered, including all passengers, will be removed.</p>
+    <div class="dialog__actions">
+      <button type="button" class="btn btn--quiet" value="cancel" id="resetCancel">Keep editing</button>
+      <button type="button" class="btn btn--danger" value="confirm" id="resetConfirm">Clear form</button>
+    </div>
+  </dialog>
+
+  <template id="passengerTemplate">
+    <div class="passenger" data-passenger>
+      <div class="passenger__head">
+        <h3 class="passenger__title">Passenger <span data-index>1</span></h3>
+        <button type="button" class="icon-btn" data-remove aria-label="Remove passenger"><i data-lucide="trash-2"></i><span>Remove</span></button>
+      </div>
+      <div class="grid grid--passenger">
+        <div class="field">
+          <label>First name <span class="req" aria-hidden="true">*</span></label>
+          <input type="text" data-field="first" maxlength="16" autocomplete="off" required>
+          <p class="field__error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label>Middle name <span class="opt">optional</span></label>
+          <input type="text" data-field="middle" maxlength="16" autocomplete="off">
+          <p class="field__error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label>Last name <span class="opt">optional</span></label>
+          <input type="text" data-field="last" maxlength="16" autocomplete="off">
+          <p class="field__error" aria-live="polite"></p>
+        </div>
+        <p class="ticket-name field--wide" data-ticket-name aria-live="polite"></p>
+        <div class="field field--age">
+          <label>Age <span class="req" aria-hidden="true">*</span></label>
+          <input type="number" data-field="age" min="1" max="125" inputmode="numeric" required>
+          <p class="field__error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label>Gender <span class="req" aria-hidden="true">*</span></label>
+          <select data-field="gender" required data-searchable>
+            <option value="">Choose</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Transgender">Transgender</option>
+          </select>
+          <p class="field__error" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label>Berth preference <span class="req" aria-hidden="true">*</span></label>
+          <select data-field="berth" required data-searchable>
+            <option value="">Choose</option>
+            <option value="No Preference">No preference</option>
+            <option value="Lower">Lower</option>
+            <option value="Middle">Middle</option>
+            <option value="Upper">Upper</option>
+            <option value="Side Lower">Side lower</option>
+            <option value="Side Upper">Side upper</option>
+          </select>
+          <p class="field__error" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="js/booking-rules.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/combobox.js" defer></script>
+  <script src="js/cities.js" defer></script>
+  <script src="js/csv-generator.js" defer></script>
+  <script src="js/app.js" defer></script>
+  <script src="js/scene.js" defer></script>
+  <script src="js/booking-clock.js" defer></script>
+</body>
+</html>
