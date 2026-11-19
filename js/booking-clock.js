@@ -31,7 +31,8 @@
       note.hidden = true;
       return;
     }
-    const cls = $("#travelClass") ? $("#travelClass").value : "";
+    const coach = (document.querySelector('input[name="coachType"]:checked') || {}).value || "";
+    const cls = ($("#travelClass") ? $("#travelClass").value : "") || (coach === "Non-AC" ? "SL" : coach === "AC" ? "3A" : "");
     const w = R.windowsFor(date, cls);
     const generalOpen = Date.now() >= w.general.at.getTime();
     const tatkalText = cls ? `${R.pretty(w.tatkal.date)}, ${R.time12(w.tatkal.time)} (${R.isNonAc(cls) ? "non-AC" : "AC"})` : `${R.pretty(w.tatkal.date)} — 10:00 AM AC / 11:00 AM non-AC`;
@@ -52,7 +53,7 @@
   renderJourneyNote();
   setInterval(render, 1e3);
   document.addEventListener("change", e => {
-    if (e.target.id === "journeyDate" || e.target.id === "travelClass") renderJourneyNote();
+    if (e.target.id === "journeyDate" || e.target.id === "travelClass" || e.target.name === "quota" || e.target.name === "coachType") renderJourneyNote();
   });
   document.addEventListener("input", e => {
     if (e.target.id === "journeyDate") renderJourneyNote();

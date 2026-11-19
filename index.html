@@ -300,6 +300,48 @@
             </select>
             <p class="field__error" id="preferredDeparture-error" aria-live="polite"></p>
           </div>
+
+          <fieldset class="field field--wide choice-group" id="quota">
+            <legend>Booking type <span class="req" aria-hidden="true">*</span></legend>
+            <div class="option-cards">
+              <label class="option-card"><input type="radio" name="quota" value="General" required><span><b>General</b><small>Opens 60 days ahead, 8:00 AM</small></span></label>
+              <label class="option-card"><input type="radio" name="quota" value="Tatkal"><span><b>Tatkal</b><small>1 day before: AC 10 AM, Non-AC 11 AM</small></span></label>
+              <label class="option-card"><input type="radio" name="quota" value="Premium Tatkal"><span><b>Premium Tatkal</b><small>1 day before, dynamic fare</small></span></label>
+              <label class="option-card"><input type="radio" name="quota" value="Ladies"><span><b>Ladies</b><small>Women, or with children under 12</small></span></label>
+              <label class="option-card"><input type="radio" name="quota" value="Other"><span><b>Other</b><small>Senior citizen, Divyangjan…</small></span></label>
+            </div>
+            <p class="field__hint" id="quotaHint">Choose how the ticket should be booked.</p>
+            <p class="field__error" id="quota-error" aria-live="polite"></p>
+          </fieldset>
+          <div class="field field--wide" id="quotaOtherField" hidden>
+            <label for="quotaOther">Which quota? <span class="req" aria-hidden="true">*</span></label>
+            <input id="quotaOther" name="quotaOther" type="text" maxlength="60" placeholder="e.g. Senior Citizen, Divyangjan">
+            <p class="field__error" id="quotaOther-error" aria-live="polite"></p>
+          </div>
+
+          <fieldset class="field choice-group" id="coachType">
+            <legend>Coach type <span class="req" aria-hidden="true">*</span></legend>
+            <div class="segmented segmented--coach">
+              <label><input type="radio" name="coachType" value="AC" required><span><i data-lucide="snowflake"></i> AC</span></label>
+              <label><input type="radio" name="coachType" value="Non-AC"><span><i data-lucide="fan"></i> Non-AC</span></label>
+            </div>
+            <p class="field__hint" id="coachHint">AC: 1A, 2A, 3A, 3E, CC · Non-AC: SL, 2S</p>
+            <p class="field__error" id="coachType-error" aria-live="polite"></p>
+          </fieldset>
+          <div class="field">
+            <label for="travelClass">Travel class <span class="req" aria-hidden="true">*</span></label>
+            <select id="travelClass" name="travelClass" required data-searchable>
+              <option value="">Choose a class</option>
+              <option value="1A">1A – First AC</option>
+              <option value="2A">2A – Second AC</option>
+              <option value="3A">3A – Third AC</option>
+              <option value="3E">3E – AC Economy</option>
+              <option value="CC">CC – AC Chair Car</option>
+              <option value="SL">SL – Sleeper (Non-AC)</option>
+              <option value="2S">2S – Second Sitting (Non-AC)</option>
+            </select>
+            <p class="field__error" id="travelClass-error" aria-live="polite"></p>
+          </div>
         </div>
       </section>
 
@@ -326,39 +368,6 @@
           </div>
         </header>
         <div class="grid">
-          <div class="field">
-            <label for="travelClass">Travel class <span class="req" aria-hidden="true">*</span></label>
-            <select id="travelClass" name="travelClass" required data-searchable>
-              <option value="">Choose a class</option>
-              <option value="1A">1A – First AC</option>
-              <option value="2A">2A – Second AC</option>
-              <option value="3A">3A – Third AC</option>
-              <option value="3E">3E – AC Economy</option>
-              <option value="SL">SL – Sleeper</option>
-              <option value="CC">CC – Chair Car</option>
-              <option value="2S">2S – Second Sitting</option>
-            </select>
-            <p class="field__error" id="travelClass-error" aria-live="polite"></p>
-          </div>
-          <div class="field">
-            <label for="quota">Quota <span class="req" aria-hidden="true">*</span></label>
-            <select id="quota" name="quota" required data-searchable>
-              <option value="">Choose a quota</option>
-              <option value="General">General</option>
-              <option value="Tatkal">Tatkal</option>
-              <option value="Premium Tatkal">Premium Tatkal</option>
-              <option value="Ladies">Ladies</option>
-              <option value="Other">Other</option>
-            </select>
-            <p class="field__hint" id="quotaHint">Quotas other than General are subject to eligibility and availability.</p>
-            <p class="field__error" id="quota-error" aria-live="polite"></p>
-          </div>
-          <div class="field field--wide" id="quotaOtherField" hidden>
-            <label for="quotaOther">Which quota? <span class="req" aria-hidden="true">*</span></label>
-            <input id="quotaOther" name="quotaOther" type="text" maxlength="60" placeholder="e.g. Senior Citizen, Divyangjan">
-            <p class="field__error" id="quotaOther-error" aria-live="polite"></p>
-          </div>
-
           <fieldset class="field choice-group" id="alternativeTrain">
             <legend>Alternative train acceptable? <span class="req" aria-hidden="true">*</span></legend>
             <div class="segmented">

@@ -126,11 +126,12 @@
     preferredTrain: () => rules.preferredTrain(value("preferredTrain")),
     preferredDeparture: () => rules.preferredDeparture(value("preferredDeparture")),
     travelClass: () => rules.travelClass(value("travelClass")),
-    quota: () => rules.quota(value("quota")),
+    quota: () => rules.quota(radio("quota")) || ([ "Tatkal", "Premium Tatkal" ].includes(radio("quota")) && $$("[data-passenger]").length > 4 ? "Tatkal allows up to 4 passengers per ticket. Remove extra passengers or choose General." : ""),
     alternativeTrain: () => rules.yesNo(radio("alternativeTrain")),
     alternativeDate: () => rules.yesNo(radio("alternativeDate")),
     specialInstructions: () => rules.specialInstructions(value("specialInstructions")),
-    quotaOther: () => value("quota") === "Other" ? rules.quotaOther(value("quotaOther")) : ""
+    quotaOther: () => radio("quota") === "Other" ? rules.quotaOther(value("quotaOther")) : "",
+    coachType: () => radio("coachType") ? "" : "Please choose AC or Non-AC."
   };
   function validateField(id) {
     const fn = fieldValidators[id];
@@ -192,8 +193,8 @@
   }
   const SECTION_FIELDS = {
     customer: [ "firstName", "middleName", "lastName", "mobile", "whatsapp", "email", "city" ],
-    journey: [ "origin", "destination", "journeyDate", "returnDate", "preferredTrain", "preferredDeparture" ],
-    preferences: [ "travelClass", "quota", "quotaOther", "alternativeTrain", "alternativeDate", "specialInstructions" ]
+    journey: [ "origin", "destination", "journeyDate", "returnDate", "preferredTrain", "preferredDeparture", "quota", "quotaOther", "coachType", "travelClass" ],
+    preferences: [ "alternativeTrain", "alternativeDate", "specialInstructions" ]
   };
   function sectionComplete(name) {
     if (SECTION_FIELDS[name]) return SECTION_FIELDS[name].every(id => !fieldValidators[id]());
@@ -210,7 +211,7 @@
       return [ ids.filter(id => ok(fieldValidators[id])).length, ids.length ];
     }
     if (name === "journey" || name === "preferences") {
-      const ids = SECTION_FIELDS[name].filter(id => ![ "middleName", "lastName" ].includes(id) && !(id === "returnDate" && !isRoundTrip()) && !(id === "quotaOther" && value("quota") !== "Other"));
+      const ids = SECTION_FIELDS[name].filter(id => ![ "middleName", "lastName" ].includes(id) && !(id === "returnDate" && !isRoundTrip()) && !(id === "quotaOther" && radio("quota") !== "Other"));
       return [ ids.filter(id => ok(fieldValidators[id])).length, ids.length ];
     }
     if (name === "passengers") {
@@ -424,7 +425,7 @@
     updateProgress();
   }
   function syncQuota() {
-    const other = value("quota") === "Other";
+    const other = radio("quota") === "Other";
     $("#quotaOtherField").hidden = !other;
     $("#quotaOther").required = other;
     if (!other) {
@@ -432,12 +433,43 @@
       setError($("#quotaOther"), "");
     }
     const hint = {
-      Tatkal: "Tatkal opens one day before the journey and carries extra charges. Subject to availability.",
-      "Premium Tatkal": "Premium Tatkal uses dynamic fares and is subject to availability.",
+      Tatkal: "Tatkal opens one day before the journey (AC 10:00 AM, Non-AC 11:00 AM IST), has extra charges and allows up to 4 passengers.",
+      "Premium Tatkal": "Premium Tatkal opens with Tatkal, uses dynamic fares and allows up to 4 passengers.",
       Ladies: "Ladies quota is for women travelling alone or with children under 12.",
       Other: "Other quotas are subject to eligibility and availability."
-    }[value("quota")] || "Quotas other than General are subject to eligibility and availability.";
+    }[radio("quota")] || (radio("quota") === "General" ? "General booking opens 60 days before the journey at 8:00 AM IST." : "Choose how the ticket should be booked.");
     $("#quotaHint").textContent = hint;
+  }
+  const COACH_CLASSES = {
+    AC: [ "1A", "2A", "3A", "3E", "CC" ],
+    "Non-AC": [ "SL", "2S" ]
+  };
+  let allClassOptions = null;
+  function syncCoach(fromUser) {
+    const select = $("#travelClass");
+    const combo = select._combo;
+    if (!combo) return;
+    if (!allClassOptions) allClassOptions = combo.options.slice();
+    const allowed = COACH_CLASSES[radio("coachType")];
+    combo.setOptions(allowed ? allClassOptions.filter(o => allowed.includes(o.value)) : allClassOptions);
+    if (allowed && select.value && !allowed.includes(select.value)) {
+      select.value = "";
+      combo.sync();
+      if (fromUser) select.dispatchEvent(new Event("change", {
+        bubbles: true
+      }));
+    }
+    updateProgress();
+  }
+  function syncCoachFromClass() {
+    const cls = value("travelClass");
+    if (!cls) return;
+    const coach = Object.keys(COACH_CLASSES).find(k => COACH_CLASSES[k].includes(cls));
+    if (coach && radio("coachType") !== coach) {
+      form.querySelector(`input[name="coachType"][value="${coach}"]`).checked = true;
+      setError($("#coachType"), "");
+      syncCoach(false);
+    }
   }
   function syncDateLimits() {
     const today = todayIST();
@@ -465,7 +497,7 @@
     return `${p.year}-${p.month}-${p.day} ${p.hour}:${p.minute}:${p.second} IST`;
   }
   function collectRequest() {
-    const quota = value("quota") === "Other" ? `Other: ${value("quotaOther")}` : value("quota");
+    const quota = radio("quota") === "Other" ? `Other: ${value("quotaOther")}` : radio("quota");
     return {
       requestId: makeRequestId(),
       submittedAt: timestampIST(),
@@ -634,6 +666,7 @@
     $$("[data-section]").forEach((c, i) => setSectionOpen(c, i === 0, false));
     syncJourneyType();
     syncQuota();
+    syncCoach(false);
     syncDateLimits();
     updateProgress();
   }
@@ -665,6 +698,7 @@
     addPassenger(false);
     syncJourneyType();
     syncQuota();
+    syncCoach(false);
     syncDateLimits();
     form.addEventListener("focusout", e => {
       const t = e.target;
@@ -694,7 +728,9 @@
       }
       if (t.name === "journeyType") syncJourneyType();
       if (t.type === "radio" && fieldValidators[t.name]) validateField(t.name);
-      if (t.id === "quota") syncQuota();
+      if (t.name === "quota") syncQuota();
+      if (t.name === "coachType") syncCoach(true);
+      if (t.id === "travelClass") syncCoachFromClass();
       if (t.id === "journeyDate") {
         syncDateLimits();
         if (isRoundTrip() && value("returnDate")) validateField("returnDate");
