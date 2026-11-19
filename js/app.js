@@ -7,7 +7,7 @@
       email: "",
       phone: ""
     },
-    submitEndpoint: "",
+    submitEndpoint: "https://script.google.com/macros/s/AKfycbyaOVZXu5Sh_6UiBlUE-Ebjh5-i4r2rCQwH_lMZOYLe3U1XJY7ZsKr02cPCD-oUFSre/exec",
     retentionText: "Your request is stored privately by the booking desk, visible only to its staff, and kept only as long " + "as needed to process the booking and meet legal obligations. This website itself keeps nothing.",
     autoDownload: "combined"
   };
